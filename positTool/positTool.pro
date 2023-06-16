@@ -42,11 +42,10 @@ qnx: target.path = /tmp/$${TARGET}/bin
 else: unix:!android: target.path = /opt/$${TARGET}/bin
 !isEmpty(target.path): INSTALLS += target
 
-win32:CONFIG(release, debug|release): LIBS += -L$$PWD/'../../../../../Program Files (x86)/universal/lib/' -lposit_c_api_pure
-else:unix: LIBS += -L$$PWD/'../../../../../Program Files (x86)/universal/lib/' -lposit_c_api_pure
-
-INCLUDEPATH += $$PWD/'../../../../../Program Files (x86)/universal/Include'
-DEPENDPATH += $$PWD/'../../../../../Program Files (x86)/universal/Include'
-
 DISTFILES += \
-    ../build-untitled1-Desktop_Qt_6_4_1_MinGW_64_bit-Debug/debug/glossary.json
+    ../build-positTool-Desktop_Qt_6_4_1_MinGW_64_bit-Debug/debug/glossary.json
+
+unix|win32: LIBS += -L$$PWD/universal/lib/ -lposit_c_api_pure
+
+INCLUDEPATH += $$PWD/universal/include
+DEPENDPATH += $$PWD/universal/include

@@ -1,0 +1,14 @@
+release/additiongraph.o
+release/conversiongraph.o
+release/divisiongraph.o
+release/glossary.o
+release/graph.o
+release/main.o
+release/mainwindow.o
+release/multiplicationgraph.o
+release/moc_additiongraph.o
+release/moc_conversiongraph.o
+release/moc_divisiongraph.o
+release/moc_glossary.o
+release/moc_mainwindow.o
+release/moc_multiplicationgraph.o
