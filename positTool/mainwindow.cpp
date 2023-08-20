@@ -207,21 +207,38 @@ void MainWindow::on_multDivButton_clicked()
 
 void MainWindow::on_operationInfoButton_clicked()
 {   
-    operation<sw::universal::posit<8,1>> op = showPositInfo<8, 1>(ui->lineEdit->text().toStdString());
+    baseOperation op("");
+    if (nBits == 8)
+    {
+        if (es == 1) op = showPositInfo<8, 1>(ui->lineEdit->text().toStdString());
+        else op = showPositInfo<8, 2>(ui->lineEdit->text().toStdString());
+    }
+    else
+        if (es == 1) op = showPositInfo<16, 1>(ui->lineEdit->text().toStdString());
+        else op = showPositInfo<16, 2>(ui->lineEdit->text().toStdString());
 
     showOperation(op.title, op.steps);
 }
 void MainWindow::on_operationConversionButton_clicked()
 {
     graph = conversionGraph;
-    operation<sw::universal::posit<8,1>> op = conversion_to_posit<8, 1, double>(ui->lineEdit->text().toDouble());
+
+    baseOperation op("");
+    if (nBits == 8)
+    {
+        if (es == 1) op = conversion_to_posit<8, 1, double>(ui->lineEdit->text().toDouble());
+        else op = conversion_to_posit<8, 2, double>(ui->lineEdit->text().toDouble());
+    }
+    else
+        if (es == 1) op = conversion_to_posit<16, 1, double>(ui->lineEdit->text().toDouble());
+        else op = conversion_to_posit<16, 2, double>(ui->lineEdit->text().toDouble());
 
     showOperation(op.title, op.steps);
 }
 void MainWindow::on_operationAdditionButton_clicked()
 {
     graph = additionGraph;
-    operation<sw::universal::posit<8,1>> op("");
+    baseOperation op("");
     if (ui->comboBox->currentIndex() == 0)
          op = addition<8, 1>(ui->lineEdit_2->text().toDouble(), ui->lineEdit->text().toDouble());
     else op = addition<8, 1>(ui->lineEdit_2->text().toDouble(), -(ui->lineEdit->text().toDouble()));
@@ -238,7 +255,7 @@ void MainWindow::on_operationMultiplicationButton_clicked()
         graph = nullptr;
     }
 
-    operation<sw::universal::posit<8,1>> op("");
+    baseOperation op("");
     if (ui->comboBox->currentIndex() == 0)
     {
         graph = multiplicationGraph;

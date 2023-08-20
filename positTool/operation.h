@@ -19,10 +19,11 @@ struct step{
     std::vector<substep> substeps;
     std::vector<int> highlights;
 };
-template<typename T>
-struct operation{
-    operation();
-    operation(std::string s): title(s){}
+
+class baseOperation{
+public:
+    baseOperation();
+    baseOperation(std::string s): title(s){}
     void add(std::string s)
     {
         steps.back().substeps.back().text.push_back(s);
@@ -39,8 +40,17 @@ struct operation{
     {
         steps.back().substeps.push_back(substep(title));
     }
-    T result;
     std::string title;
     std::vector<step> steps;
 };
+
+template<typename T>
+class operation : public baseOperation{
+public:
+    using baseOperation::baseOperation;
+    T result;
+};
+
+
+
 #endif // OPERATION_H

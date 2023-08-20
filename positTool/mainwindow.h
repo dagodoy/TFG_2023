@@ -74,6 +74,9 @@ private:
     std::string title;
     int currentStep = 0;
 
+    size_t nBits = 16;
+    size_t es = 2;
+
     void updateText();
     void nextStep();
     void showOperation(std::string opTitle, std::vector<step> opSteps);
