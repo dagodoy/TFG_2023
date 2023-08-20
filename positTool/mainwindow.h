@@ -50,6 +50,9 @@ private slots:
 
 
     void on_glossaryButton_clicked();
+
+    void on_nBits_changed(QString newValue);
+    void on_es_changed(QString newValue);
 private:
     QGridLayout *boxLayout;
     QGroupBox *groupBox;

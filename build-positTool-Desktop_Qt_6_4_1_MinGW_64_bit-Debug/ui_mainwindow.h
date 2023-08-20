@@ -46,6 +46,10 @@ public:
     QLineEdit *lineEdit_2;
     QComboBox *comboBox;
     QPushButton *glossaryButton_2;
+    QComboBox *nBitsBox;
+    QComboBox *esBox;
+    QLabel *label;
+    QLabel *label_2;
     QMenuBar *menubar;
     QStatusBar *statusbar;
 
@@ -122,6 +126,18 @@ public:
         glossaryButton_2 = new QPushButton(page_2);
         glossaryButton_2->setObjectName("glossaryButton_2");
         glossaryButton_2->setGeometry(QRect(780, 0, 16, 24));
+        nBitsBox = new QComboBox(page_2);
+        nBitsBox->setObjectName("nBitsBox");
+        nBitsBox->setGeometry(QRect(40, 30, 41, 22));
+        esBox = new QComboBox(page_2);
+        esBox->setObjectName("esBox");
+        esBox->setGeometry(QRect(120, 30, 41, 22));
+        label = new QLabel(page_2);
+        label->setObjectName("label");
+        label->setGeometry(QRect(10, 30, 21, 16));
+        label_2 = new QLabel(page_2);
+        label_2->setObjectName("label_2");
+        label_2->setGeometry(QRect(90, 30, 21, 16));
         stackedWidget->addWidget(page_2);
         MainWindow->setCentralWidget(centralwidget);
         menubar = new QMenuBar(MainWindow);
@@ -134,7 +150,7 @@ public:
 
         retranslateUi(MainWindow);
 
-        stackedWidget->setCurrentIndex(0);
+        stackedWidget->setCurrentIndex(1);
 
 
         QMetaObject::connectSlotsByName(MainWindow);
@@ -155,6 +171,8 @@ public:
         titleLabel->setText(QCoreApplication::translate("MainWindow", "TextLabel", nullptr));
         lineEdit_2->setText(QCoreApplication::translate("MainWindow", "0", nullptr));
         glossaryButton_2->setText(QCoreApplication::translate("MainWindow", "i", nullptr));
+        label->setText(QCoreApplication::translate("MainWindow", "n =", nullptr));
+        label_2->setText(QCoreApplication::translate("MainWindow", "es =", nullptr));
     } // retranslateUi
 
 };

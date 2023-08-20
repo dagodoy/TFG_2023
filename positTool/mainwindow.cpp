@@ -30,6 +30,9 @@ MainWindow::MainWindow(QWidget *parent)
     connect(ui->scrollArea->horizontalScrollBar(), SIGNAL(rangeChanged(int,int)), this, SLOT(on_scrollBar_rangeChange(int, int)));
     connect(ui->glossaryButton_2, SIGNAL(clicked()), this, SLOT(on_glossaryButton_clicked()));
 
+    connect(ui->nBitsBox, SIGNAL(currentTextChanged(QString)), this, SLOT(on_nBits_changed(QString)));
+    connect(ui->esBox, SIGNAL(currentTextChanged(QString)), this, SLOT(on_es_changed(QString)));
+
     //Number input format
     validator = new QDoubleValidator(this);
     validator->setNotation(QDoubleValidator::StandardNotation);
@@ -38,6 +41,12 @@ MainWindow::MainWindow(QWidget *parent)
     ui->lineEdit->setValidator( validator );
 
     ui->lineEdit->setText(QString::number(num));
+
+    ui->nBitsBox->addItem("8");
+    ui->nBitsBox->addItem("16");
+
+    ui->esBox->addItem("1");
+    ui->esBox->addItem("2");
 }
 
 MainWindow::~MainWindow()
@@ -165,6 +174,15 @@ void MainWindow::clearOperation()
     currentStep = 0;
 }
 
+void MainWindow::on_nBits_changed(QString newValue)
+{
+    nBits = newValue.toInt();
+}
+
+void MainWindow::on_es_changed(QString newValue)
+{
+    es = newValue.toInt();
+}
 
 void MainWindow::on_infoButton_clicked()
 {
