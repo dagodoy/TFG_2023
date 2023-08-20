@@ -240,8 +240,31 @@ void MainWindow::on_operationAdditionButton_clicked()
     graph = additionGraph;
     baseOperation op("");
     if (ui->comboBox->currentIndex() == 0)
-         op = addition<8, 1>(ui->lineEdit_2->text().toDouble(), ui->lineEdit->text().toDouble());
-    else op = addition<8, 1>(ui->lineEdit_2->text().toDouble(), -(ui->lineEdit->text().toDouble()));
+    {
+        if (nBits == 8)
+        {
+            if (es == 1) op = addition<8, 1>(ui->lineEdit_2->text().toDouble(), ui->lineEdit->text().toDouble());
+            else op = addition<8, 2>(ui->lineEdit_2->text().toDouble(), ui->lineEdit->text().toDouble());
+        }
+        else
+            if (es == 1) op = addition<16, 1>(ui->lineEdit_2->text().toDouble(), ui->lineEdit->text().toDouble());
+            else op = addition<16, 2>(ui->lineEdit_2->text().toDouble(), ui->lineEdit->text().toDouble());
+         //op = addition<8, 1>(ui->lineEdit_2->text().toDouble(), ui->lineEdit->text().toDouble());
+    }
+
+    else
+    {
+        if (nBits == 8)
+        {
+            if (es == 1) op = addition<8, 1>(ui->lineEdit_2->text().toDouble(), -(ui->lineEdit->text().toDouble()));
+            else op = addition<8, 2>(ui->lineEdit_2->text().toDouble(), -(ui->lineEdit->text().toDouble()));
+        }
+        else
+            if (es == 1) op = addition<16, 1>(ui->lineEdit_2->text().toDouble(), -(ui->lineEdit->text().toDouble()));
+            else op = addition<16, 2>(ui->lineEdit_2->text().toDouble(), -(ui->lineEdit->text().toDouble()));
+
+        //op = addition<8, 1>(ui->lineEdit_2->text().toDouble(), -(ui->lineEdit->text().toDouble()));
+    }
 
     showOperation(op.title, op.steps);
 }
@@ -259,12 +282,31 @@ void MainWindow::on_operationMultiplicationButton_clicked()
     if (ui->comboBox->currentIndex() == 0)
     {
         graph = multiplicationGraph;
-        op = multiply<8, 1>(ui->lineEdit_2->text().toDouble(), ui->lineEdit->text().toDouble());
+
+        if (nBits == 8)
+        {
+            if (es == 1) op = multiply<8, 1>(ui->lineEdit_2->text().toDouble(), ui->lineEdit->text().toDouble());
+            else op = multiply<8, 2>(ui->lineEdit_2->text().toDouble(), ui->lineEdit->text().toDouble());
+        }
+        else
+            if (es == 1) op = multiply<16, 1>(ui->lineEdit_2->text().toDouble(), ui->lineEdit->text().toDouble());
+            else op = multiply<16, 2>(ui->lineEdit_2->text().toDouble(), ui->lineEdit->text().toDouble());
+
+        //op = multiply<8, 1>(ui->lineEdit_2->text().toDouble(), ui->lineEdit->text().toDouble());
     }
     else
     {
         graph = divisionGraph;
-        op = divide<8, 1>(ui->lineEdit_2->text().toDouble(), ui->lineEdit->text().toDouble());
+        //op = divide<8, 1>(ui->lineEdit_2->text().toDouble(), ui->lineEdit->text().toDouble());
+
+        if (nBits == 8)
+        {
+            if (es == 1) op = divide<8, 1>(ui->lineEdit_2->text().toDouble(), ui->lineEdit->text().toDouble());
+            else op = divide<8, 2>(ui->lineEdit_2->text().toDouble(), ui->lineEdit->text().toDouble());
+        }
+        else
+            if (es == 1) op = divide<16, 1>(ui->lineEdit_2->text().toDouble(), ui->lineEdit->text().toDouble());
+            else op = divide<16, 2>(ui->lineEdit_2->text().toDouble(), ui->lineEdit->text().toDouble());
     }
 
     showOperation(op.title, op.steps);
