@@ -39,6 +39,8 @@ MainWindow::MainWindow(QWidget *parent)
     validator->setLocale(QLocale::C);
     validator->setDecimals(20);
     ui->lineEdit->setValidator( validator );
+    ui->lineEdit_2->setValidator( validator );
+
 
     ui->lineEdit->setText(QString::number(num));
 
@@ -47,6 +49,28 @@ MainWindow::MainWindow(QWidget *parent)
 
     ui->esBox->addItem("1");
     ui->esBox->addItem("2");
+    QString path = QCoreApplication::applicationDirPath();
+    path.append("/images/info.png");
+    ui->infoButton->setIcon(QIcon(path));
+
+    path = QCoreApplication::applicationDirPath();
+    path.append("/images/conversion.png");
+    ui->conversionButton->setIcon(QIcon(path));
+
+    path = QCoreApplication::applicationDirPath();
+    path.append("/images/addition.png");
+    ui->additionButton->setIcon(QIcon(path));
+
+    path = QCoreApplication::applicationDirPath();
+    path.append("/images/multiplication.png");
+    ui->multDivButton->setIcon(QIcon(path));
+
+
+//    operation<int> test("Operation");
+//    test.nextStep("Step");
+//    test.nextSubstep("Substep");
+//    test.add("Text");
+//    showOperation(test.title, test.steps);
 }
 
 MainWindow::~MainWindow()
@@ -68,7 +92,12 @@ void MainWindow::showOperation(std::string opTitle, std::vector<step> opSteps)
     }
 
     QString txt = QString::fromStdString(title);
-    ui->nextButton->setEnabled(true);
+    if (opSteps.size() > 1)
+    {
+        ui->nextButton->setText("Next");
+        ui->nextButton->setEnabled(true);
+    }
+    else ui->nextButton->setText("Finished");
     ui->titleLabel->show();
     ui->titleLabel->setText(txt);
 
@@ -146,6 +175,7 @@ void MainWindow::on_nextButton_clicked()
     if (currentStep == steps.size() -1)
     {
          ui->nextButton->setEnabled(false);
+         ui->nextButton->setText("Finished");
     }
 
 }
@@ -160,6 +190,7 @@ void MainWindow::clearOperation()
 {
     ui->startButton->disconnect();
     ui->nextButton->setEnabled(false);
+    ui->nextButton->setText("Next");
     ui->titleLabel->hide();
     ui->lineEdit_2->hide();
     for (int i = 0; i < textEdits.size(); i++)
@@ -186,14 +217,30 @@ void MainWindow::on_es_changed(QString newValue)
 
 void MainWindow::on_infoButton_clicked()
 {
+    ui->operationTitle->setText("Posit Info");
     ui->stackedWidget->setCurrentIndex(1);
+    if (operators == 2)
+    {
+        QString aux = ui->lineEdit->text();
+        ui->lineEdit->setText(ui->lineEdit_2->text());
+        ui->lineEdit_2->setText(aux);
+    }
+    operators = 1;
     clearOperation();
     connect(ui->startButton, SIGNAL(clicked()), this, SLOT(on_operationInfoButton_clicked()));
 }
 
 void MainWindow::on_conversionButton_clicked()
 {
+    ui->operationTitle->setText("Conversion");
     ui->stackedWidget->setCurrentIndex(1);
+    if (operators == 2)
+    {
+        QString aux = ui->lineEdit->text();
+        ui->lineEdit->setText(ui->lineEdit_2->text());
+        ui->lineEdit_2->setText(aux);
+    }
+    operators = 1;
     clearOperation();
     connect(ui->startButton, SIGNAL(clicked()), this, SLOT(on_operationConversionButton_clicked()));
 }
@@ -202,9 +249,17 @@ void MainWindow::on_conversionButton_clicked()
 
 void MainWindow::on_additionButton_clicked()
 {
+    ui->operationTitle->setText("Addition/Subtraction");
     ui->stackedWidget->setCurrentIndex(1);
     clearOperation();
     ui->lineEdit_2->show();
+    if (operators == 1)
+    {
+        QString aux = ui->lineEdit->text();
+        ui->lineEdit->setText(ui->lineEdit_2->text());
+        ui->lineEdit_2->setText(aux);
+    }
+    operators = 2;
     ui->comboBox->show();
     ui->comboBox->addItem("+");
     ui->comboBox->addItem("-");
@@ -214,9 +269,17 @@ void MainWindow::on_additionButton_clicked()
 
 void MainWindow::on_multDivButton_clicked()
 {
+    ui->operationTitle->setText("Multiplication/Division");
     ui->stackedWidget->setCurrentIndex(1);
     clearOperation();
     ui->lineEdit_2->show();
+    if (operators == 1)
+    {
+        QString aux = ui->lineEdit->text();
+        ui->lineEdit->setText(ui->lineEdit_2->text());
+        ui->lineEdit_2->setText(aux);
+    }
+    operators = 2;
     ui->comboBox->show();
     ui->comboBox->addItem("*");
     ui->comboBox->addItem("/");
@@ -295,7 +358,7 @@ void MainWindow::on_operationMultiplicationButton_clicked()
         graph->close();
         graph = nullptr;
     }
-
+    QString ay = "HOla";
     baseOperation op("");
     if (ui->comboBox->currentIndex() == 0)
     {

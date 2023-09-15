@@ -43,9 +43,21 @@ else: unix:!android: target.path = /opt/$${TARGET}/bin
 !isEmpty(target.path): INSTALLS += target
 
 DISTFILES += \
-    ../build-positTool-Desktop_Qt_6_4_1_MinGW_64_bit-Debug/debug/glossary.json
+    ../build-positTool-Desktop_Qt_6_4_1_MinGW_64_bit-Debug/debug/glossary.json \
+    images/addition.png \
+    images/conversion.png \
+    images/info.png \
+    images/multiplication.png \
+    images/positTool.ico \
+    images/prueba conversion.png \
+    images/prueba info.png \
+    images/prueba info.png \
+    images/prueba multiplicacion.png \
+    images/prueba suma.png
 
 unix|win32: LIBS += -L$$PWD/universal/lib/ -lposit_c_api_pure
 
 INCLUDEPATH += $$PWD/universal/include
 DEPENDPATH += $$PWD/universal/include
+
+win32:RC_ICONS += ./images/positTool.ico

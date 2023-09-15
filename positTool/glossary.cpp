@@ -41,7 +41,7 @@ Glossary::Glossary(QWidget *parent) :
         QTextEdit* textEdit = new QTextEdit();
         textEdit->append(arrayObject.value("title").toString());
         textEdit->append(arrayObject.value("description").toString());
-        textEdit->setMinimumSize(ui->scrollArea->width() - 100, 0);
+        textEdit->setMinimumSize(ui->scrollArea->width() - 100, 110);
         textEdit->setReadOnly(true);
         //textEdits.push_back(textEdit);
         lay->addWidget(textEdit);

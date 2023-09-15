@@ -80,6 +80,8 @@ private:
     size_t nBits = 16;
     size_t es = 2;
 
+    uint operators = 1;
+
     void updateText();
     void nextStep();
     void showOperation(std::string opTitle, std::vector<step> opSteps);

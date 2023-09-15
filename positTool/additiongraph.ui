@@ -13,8 +13,24 @@
     <height>483</height>
    </rect>
   </property>
+  <property name="minimumSize">
+   <size>
+    <width>517</width>
+    <height>483</height>
+   </size>
+  </property>
+  <property name="maximumSize">
+   <size>
+    <width>517</width>
+    <height>483</height>
+   </size>
+  </property>
   <property name="windowTitle">
    <string>Addition/Subtraction</string>
+  </property>
+  <property name="windowIcon">
+   <iconset>
+    <normaloff>../../../TFG/iconos/positTool.png</normaloff>../../../TFG/iconos/positTool.png</iconset>
   </property>
   <widget class="QWidget" name="centralwidget">
    <widget class="QTextEdit" name="textEdit">

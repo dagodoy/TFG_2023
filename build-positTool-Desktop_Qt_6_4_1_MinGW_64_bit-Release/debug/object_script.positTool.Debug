@@ -1,0 +1,14 @@
+debug/additiongraph.o
+debug/conversiongraph.o
+debug/divisiongraph.o
+debug/glossary.o
+debug/graph.o
+debug/main.o
+debug/mainwindow.o
+debug/multiplicationgraph.o
+debug/moc_additiongraph.o
+debug/moc_conversiongraph.o
+debug/moc_divisiongraph.o
+debug/moc_glossary.o
+debug/moc_mainwindow.o
+debug/moc_multiplicationgraph.o

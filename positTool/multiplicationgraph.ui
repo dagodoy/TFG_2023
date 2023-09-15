@@ -10,8 +10,24 @@
     <height>459</height>
    </rect>
   </property>
+  <property name="minimumSize">
+   <size>
+    <width>544</width>
+    <height>459</height>
+   </size>
+  </property>
+  <property name="maximumSize">
+   <size>
+    <width>544</width>
+    <height>459</height>
+   </size>
+  </property>
   <property name="windowTitle">
    <string>Multiplication</string>
+  </property>
+  <property name="windowIcon">
+   <iconset>
+    <normaloff>../../../TFG/iconos/positTool.png</normaloff>../../../TFG/iconos/positTool.png</iconset>
   </property>
   <widget class="QWidget" name="centralwidget">
    <widget class="QTextEdit" name="textEdit_4">

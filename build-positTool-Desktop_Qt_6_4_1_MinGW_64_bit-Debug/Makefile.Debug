@@ -19,7 +19,7 @@ CXXFLAGS      = -fno-keep-inline-dllexport -g -std=gnu++1z -Wall -Wextra -Wextra
 INCPATH       = -I../positTool -I. -I../positTool/universal/include -ID:/Qt/6.4.1/mingw_64/include -ID:/Qt/6.4.1/mingw_64/include/QtWidgets -ID:/Qt/6.4.1/mingw_64/include/QtGui -ID:/Qt/6.4.1/mingw_64/include/QtCore -Idebug -I. -I/include -ID:/Qt/6.4.1/mingw_64/mkspecs/win32-g++ 
 LINKER      =        g++
 LFLAGS        =        -Wl,-subsystem,windows -mthreads
-LIBS        =        -LC:\Users\David\Desktop\GitHub\TFG_2023\positTool\universal\lib -lposit_c_api_pure D:\Qt\6.4.1\mingw_64\lib\libQt6Widgets.a D:\Qt\6.4.1\mingw_64\lib\libQt6Gui.a D:\Qt\6.4.1\mingw_64\lib\libQt6Core.a -lmingw32 D:\Qt\6.4.1\mingw_64\lib\libQt6EntryPoint.a -lshell32  
+LIBS        =        -LC:\Users\David\Desktop\GitHub\TFG_2023\positTool\universal\lib -lposit_c_api_pure D:\Qt\6.4.1\mingw_64\lib\libQt6Widgets.a D:\Qt\6.4.1\mingw_64\lib\libQt6Gui.a D:\Qt\6.4.1\mingw_64\lib\libQt6Core.a debug\positTool_resource_res.o -lmingw32 D:\Qt\6.4.1\mingw_64\lib\libQt6EntryPoint.a -lshell32  
 QMAKE         = D:\Qt\6.4.1\mingw_64\bin\qmake.exe
 DEL_FILE      = del
 CHK_DIR_EXISTS= if not exist
@@ -40,7 +40,7 @@ IDC           = idc
 IDL           = midl
 ZIP           = zip -r -9
 DEF_FILE      = 
-RES_FILE      = 
+RES_FILE      = debug\positTool_resource_res.o
 SED           = $(QMAKE) -install sed
 MOVE          = move
 
@@ -78,7 +78,22 @@ OBJECTS       = debug/additiongraph.o \
 		debug/moc_mainwindow.o \
 		debug/moc_multiplicationgraph.o
 
-DIST          = ../build-positTool-Desktop_Qt_6_4_1_MinGW_64_bit-Debug/debug/glossary.json ..\positTool\additiongraph.h \
+DIST          = ../build-positTool-Desktop_Qt_6_4_1_MinGW_64_bit-Debug/debug/glossary.json \
+		images/addition.png \
+		images/conversion.png \
+		images/info.png \
+		images/multiplication.png \
+		images/positTool.ico \
+		images/prueba \
+		conversion.png \
+		images/prueba \
+		info.png \
+		images/prueba \
+		info.png \
+		images/prueba \
+		multiplicacion.png \
+		images/prueba \
+		suma.png ..\positTool\additiongraph.h \
 		..\positTool\conversiongraph.h \
 		..\positTool\divisiongraph.h \
 		..\positTool\explanations.h \
@@ -104,8 +119,11 @@ DESTDIR_TARGET = debug\positTool.exe
 first: all
 all: Makefile.Debug  debug/positTool.exe
 
-debug/positTool.exe: D:/Qt/6.4.1/mingw_64/lib/libQt6Widgets.a D:/Qt/6.4.1/mingw_64/lib/libQt6Gui.a D:/Qt/6.4.1/mingw_64/lib/libQt6Core.a D:/Qt/6.4.1/mingw_64/lib/libQt6EntryPoint.a ui_additiongraph.h ui_conversiongraph.h ui_divisiongraph.h ui_glossary.h ui_mainwindow.h ui_multiplicationgraph.h $(OBJECTS) 
+debug/positTool.exe: D:/Qt/6.4.1/mingw_64/lib/libQt6Widgets.a D:/Qt/6.4.1/mingw_64/lib/libQt6Gui.a D:/Qt/6.4.1/mingw_64/lib/libQt6Core.a D:/Qt/6.4.1/mingw_64/lib/libQt6EntryPoint.a ui_additiongraph.h ui_conversiongraph.h ui_divisiongraph.h ui_glossary.h ui_mainwindow.h ui_multiplicationgraph.h $(OBJECTS) debug/positTool_resource_res.o
 	$(LINKER) $(LFLAGS) -o $(DESTDIR_TARGET) @debug\object_script.positTool.Debug $(LIBS)
+
+debug/positTool_resource_res.o: positTool_resource.rc
+	windres -i positTool_resource.rc -o debug\positTool_resource_res.o --include-dir=. $(DEFINES)
 
 qmake: FORCE
 	@$(QMAKE) -o Makefile.Debug ..\positTool\positTool.pro -spec win32-g++ "CONFIG+=debug" "CONFIG+=qml_debug"
@@ -117,6 +135,7 @@ dist:
 
 clean: compiler_clean 
 	-$(DEL_FILE) debug\additiongraph.o debug\conversiongraph.o debug\divisiongraph.o debug\glossary.o debug\graph.o debug\main.o debug\mainwindow.o debug\multiplicationgraph.o debug\moc_additiongraph.o debug\moc_conversiongraph.o debug\moc_divisiongraph.o debug\moc_glossary.o debug\moc_mainwindow.o debug\moc_multiplicationgraph.o
+	-$(DEL_FILE) debug\positTool_resource_res.o
 
 distclean: clean 
 	-$(DEL_FILE) .qmake.stash
@@ -1368,6 +1387,7 @@ debug/additiongraph.o: ../positTool/additiongraph.cpp ../positTool/additiongraph
 		D:/Qt/6.4.1/mingw_64/include/QtGui/QPalette \
 		ui_additiongraph.h \
 		D:/Qt/6.4.1/mingw_64/include/QtCore/QVariant \
+		D:/Qt/6.4.1/mingw_64/include/QtGui/QIcon \
 		D:/Qt/6.4.1/mingw_64/include/QtWidgets/QApplication \
 		D:/Qt/6.4.1/mingw_64/include/QtWidgets/qapplication.h \
 		D:/Qt/6.4.1/mingw_64/include/QtCore/qcoreapplication.h \
@@ -1554,6 +1574,7 @@ debug/conversiongraph.o: ../positTool/conversiongraph.cpp ../positTool/conversio
 		D:/Qt/6.4.1/mingw_64/include/QtGui/QPalette \
 		ui_conversiongraph.h \
 		D:/Qt/6.4.1/mingw_64/include/QtCore/QVariant \
+		D:/Qt/6.4.1/mingw_64/include/QtGui/QIcon \
 		D:/Qt/6.4.1/mingw_64/include/QtWidgets/QApplication \
 		D:/Qt/6.4.1/mingw_64/include/QtWidgets/qapplication.h \
 		D:/Qt/6.4.1/mingw_64/include/QtCore/qcoreapplication.h \
@@ -1740,6 +1761,7 @@ debug/divisiongraph.o: ../positTool/divisiongraph.cpp ../positTool/divisiongraph
 		D:/Qt/6.4.1/mingw_64/include/QtGui/QPalette \
 		ui_divisiongraph.h \
 		D:/Qt/6.4.1/mingw_64/include/QtCore/QVariant \
+		D:/Qt/6.4.1/mingw_64/include/QtGui/QIcon \
 		D:/Qt/6.4.1/mingw_64/include/QtWidgets/QApplication \
 		D:/Qt/6.4.1/mingw_64/include/QtWidgets/qapplication.h \
 		D:/Qt/6.4.1/mingw_64/include/QtCore/qcoreapplication.h \
@@ -1930,6 +1952,7 @@ debug/glossary.o: ../positTool/glossary.cpp ../positTool/glossary.h \
 		D:/Qt/6.4.1/mingw_64/include/QtGui/qpen.h \
 		ui_glossary.h \
 		D:/Qt/6.4.1/mingw_64/include/QtCore/QVariant \
+		D:/Qt/6.4.1/mingw_64/include/QtGui/QIcon \
 		D:/Qt/6.4.1/mingw_64/include/QtWidgets/QApplication \
 		D:/Qt/6.4.1/mingw_64/include/QtWidgets/qapplication.h \
 		D:/Qt/6.4.1/mingw_64/include/QtCore/qcoreapplication.h \
@@ -2672,6 +2695,7 @@ debug/mainwindow.o: ../positTool/mainwindow.cpp ../positTool/mainwindow.h \
 		../positTool/universal/include/universal/number/posit/twoSum.hpp \
 		ui_mainwindow.h \
 		D:/Qt/6.4.1/mingw_64/include/QtCore/QVariant \
+		D:/Qt/6.4.1/mingw_64/include/QtGui/QIcon \
 		D:/Qt/6.4.1/mingw_64/include/QtWidgets/QApplication \
 		D:/Qt/6.4.1/mingw_64/include/QtWidgets/qapplication.h \
 		D:/Qt/6.4.1/mingw_64/include/QtCore/qcoreapplication.h \
@@ -2722,6 +2746,8 @@ debug/mainwindow.o: ../positTool/mainwindow.cpp ../positTool/mainwindow.h \
 		D:/Qt/6.4.1/mingw_64/include/QtWidgets/qstackedwidget.h \
 		D:/Qt/6.4.1/mingw_64/include/QtWidgets/QStatusBar \
 		D:/Qt/6.4.1/mingw_64/include/QtWidgets/qstatusbar.h \
+		D:/Qt/6.4.1/mingw_64/include/QtWidgets/QToolButton \
+		D:/Qt/6.4.1/mingw_64/include/QtWidgets/qtoolbutton.h \
 		D:/Qt/6.4.1/mingw_64/include/QtWidgets/QWidget \
 		D:/Qt/6.4.1/mingw_64/include/QtGui/QDoubleValidator \
 		../positTool/explanations.h \
@@ -3042,7 +3068,6 @@ debug/mainwindow.o: ../positTool/mainwindow.cpp ../positTool/mainwindow.h \
 		D:/Qt/6.4.1/mingw_64/include/QtWidgets/qtextbrowser.h \
 		D:/Qt/6.4.1/mingw_64/include/QtWidgets/qtoolbar.h \
 		D:/Qt/6.4.1/mingw_64/include/QtWidgets/qtoolbox.h \
-		D:/Qt/6.4.1/mingw_64/include/QtWidgets/qtoolbutton.h \
 		D:/Qt/6.4.1/mingw_64/include/QtWidgets/qtooltip.h \
 		D:/Qt/6.4.1/mingw_64/include/QtWidgets/qtreeview.h \
 		D:/Qt/6.4.1/mingw_64/include/QtWidgets/qtreewidget.h \
@@ -3205,6 +3230,7 @@ debug/multiplicationgraph.o: ../positTool/multiplicationgraph.cpp ../positTool/m
 		D:/Qt/6.4.1/mingw_64/include/QtGui/QPalette \
 		ui_multiplicationgraph.h \
 		D:/Qt/6.4.1/mingw_64/include/QtCore/QVariant \
+		D:/Qt/6.4.1/mingw_64/include/QtGui/QIcon \
 		D:/Qt/6.4.1/mingw_64/include/QtWidgets/QApplication \
 		D:/Qt/6.4.1/mingw_64/include/QtWidgets/qapplication.h \
 		D:/Qt/6.4.1/mingw_64/include/QtCore/qcoreapplication.h \

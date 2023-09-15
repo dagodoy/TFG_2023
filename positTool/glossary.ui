@@ -13,8 +13,24 @@
     <height>600</height>
    </rect>
   </property>
+  <property name="minimumSize">
+   <size>
+    <width>297</width>
+    <height>600</height>
+   </size>
+  </property>
+  <property name="maximumSize">
+   <size>
+    <width>297</width>
+    <height>600</height>
+   </size>
+  </property>
   <property name="windowTitle">
    <string>Glossary</string>
+  </property>
+  <property name="windowIcon">
+   <iconset>
+    <normaloff>../../../TFG/iconos/positTool.png</normaloff>../../../TFG/iconos/positTool.png</iconset>
   </property>
   <widget class="QWidget" name="centralwidget">
    <widget class="QScrollArea" name="scrollArea">
